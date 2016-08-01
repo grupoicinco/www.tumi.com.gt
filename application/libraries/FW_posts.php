@@ -67,18 +67,20 @@ class FW_posts {
 		$html_code = '<html>
 						<head><title>'.$current_website.'</title></head>
 						<body style="font-family:Arial, Helvetica; sans-serif;">
-							<p><span style="font-size:18px;color:#000;font-weight:bold;">Solicitud de Contacto - '.$company.'</span><p>
-							<p><span style="font-size:14px;color:#505050;">Gracias por su mensaje.</span></p>
-							<p><span style="font-size:14px;color:#505050;">A continuaci&oacute;n una copia de la informaci&oacute;n enviada. Si necesita agregar o modificar alg&uacute;n dato, por favor escriba a <b>'.$contact_email.'</b>.</span></p>
+							<p><span style="font-size:18px;color:#000;font-weight:bold;">Correo Electr&oacute;nico - '.$company.'</span><p>
 							<table width="550" style="background-color:#EEE;width:526px;font-size:12px;">
 							<tr>
 								<td>
 									<table width="550" style="border-color:#dbdbdb;border-style:solid;border-width:1px;width:526px;font-size:12px; font-family:Arial, Helvetica; sans-serif;">
 										<tr style="line-height:20px;"><td colspan="2" style="font-size:14px;"><img src="'.$this->top_image_route.'" width="550" height="60" style="padding:0px;margin:0px;" /></td></tr>';
 		foreach($body_array as $field):
-		$html_code .= '						<tr>
+		$html_code .= (!empty($field['LABEL']))?'
+											<tr>
 												<td style="padding-left:10px;padding-top:10px;padding-bottom:10px; width:120"><b>'.$field['LABEL'].'</b></td>
 												<td style="padding-left:10px;padding-top:10px;padding-bottom:10px">'.$field['POSTVAL'].'</td>
+											</tr>':
+											'<tr>
+												<td style="padding-left:10px;padding-top:10px;padding-bottom:10px" colspan="2">'.$field['POSTVAL'].'</td>
 											</tr>';
 		endforeach;
 		$html_code .= '				</table>

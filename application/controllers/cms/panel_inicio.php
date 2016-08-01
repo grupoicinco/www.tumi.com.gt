@@ -12,7 +12,7 @@ class Panel_inicio extends MY_Controller {
 		$this->load->library("api_analytics_service");
 		
 		$this->ot							= 'OT1234';
-		$this->analytics_account_number		= 1;
+		$this->analytics_account_number		= 0;
 	}
 	
 	public function index(){

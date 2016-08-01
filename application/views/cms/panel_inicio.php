@@ -2,10 +2,11 @@
 	<div class="page-header">
 		<h1>Dashboard <small>Informaci&oacute;n general del sitio.</small></h1>
 	</div>
-	<div class="row-fluid">
-		<div class="span7 widget">
+	
+	<div class="row">
+		<div class="col-lg-7 widget">
 			<h6 class="title">Dashboard</h6>
-			<table class="table table-striped table-bordered table-hover">
+			<table class="table table-striped table-hover">
 				<tbody>
 					<?php foreach($dashboard as $key => $data):?>
 					<tr>
@@ -17,28 +18,28 @@
 			</table>
 		</div>
 		
-		<div class="span5 widget">
+		<div class="col-lg-5 widget">
             <h6 class="title">&iquest;Necesita Asistencia?</h6>
             <p>Si necesita asistencia en el manejo de este sistema de administración, puede contactarnos por medio de este formulario.</p>
-                <form class="form-horizontal" method="post" action="">
-    				<div class="control-group <?php echo (form_error('inputName') != '')?'error':''?>">
-    					<label class="control-label" for="inputName">Nombre</label>
-    					<div class="controls">
-    						<input type="text" name="inputName" id="inputName" placeholder="Nombre" value="<?php echo set_value('inputName'); ?>">
+                <form class="form-horizontal" role="form" method="post" action="">
+    				<div class="form-group <?php echo (form_error('inputName') != '')?'has-error':''?>">
+    					<label class="control-label col-lg-2" for="inputName">Nombre</label>
+    					<div class="col-lg-10">
+    						<input type="text" name="inputName" id="inputName" class="form-control" placeholder="Nombre" value="<?php echo set_value('inputName'); ?>">
 							<?php echo form_error('inputName'); ?>
     					</div>
     				</div>
-    				<div class="control-group <?php echo (form_error('inputEmail') != '')?'error':''?>">
-    					<label class="control-label" for="inputEmail">Email</label>
-    					<div class="controls">
-    						<input type="text" id="inpuEmail" name="inputEmail" placeholder="Email" value="<?php echo set_value('inputEmail'); ?>">
+    				<div class="form-group <?php echo (form_error('inputEmail') != '')?'has-error':''?>">
+    					<label class="control-label col-lg-2" for="inputEmail">Email</label>
+    					<div class="col-lg-10">
+    						<input type="text" id="inpuEmail" name="inputEmail" class="form-control" placeholder="Email" value="<?php echo set_value('inputEmail'); ?>">
 							<?php echo form_error('inputEmail'); ?>
     					</div>
     				</div>
-    				<div class="control-group <?php echo (form_error('inputMessage') != '')?'error':''?>">
-    					<label class="control-label" for="inputMessage">Mensaje</label>
-    					<div class="controls">
-    						<textarea type="text" id="inputMessage" name="inputMessage" placeholder="Mensaje"><?php echo set_value('inputMessage'); ?></textarea>
+    				<div class="form-group <?php echo (form_error('inputMessage') != '')?'has-error':''?>">
+    					<label class="control-label col-lg-2" for="inputMessage">Mensaje</label>
+    					<div class="col-lg-10">
+    						<textarea id="inputMessage" name="inputMessage" class="form-control" placeholder="Mensaje"><?php echo set_value('inputMessage'); ?></textarea>
 							<?php echo form_error('inputMessage'); ?>
     					</div>
     				</div>
@@ -79,27 +80,29 @@
         chart.draw(data, options);
       }
     </script>
-	<div class="row-fluid">
-		<div class="span4">
-			<div class="row-fluid">
-				<div class="span12 widget">
+	<div class="row">
+		<div class="col-lg-4">
+			<div class="row">
+				<div class="col-lg-12 widget">
 					<h6 class="title">Accesos Google Analytics</h6>
 					<?php if(!empty($analytics)):?>
-					<dl class="dl-horizontal">
-						<dt>Acceso</dt>
-						<dd>&raquo; <a target="_blank" href="<?php echo $analytics->ANALYTICS_URL?>"><?php echo $analytics->ANALYTICS_URL?></a></dd>
-						
-						<dt>Usuario</dt>
-						<dd>&raquo; <?php echo $analytics->ANALYTICS_USER?></dd>
-						
-						<dt>Contrase&ntilde;a</dt>
-						<dd>&raquo; <?php echo $analytics->ANALYTICS_PASSWORD?></dd>
-					</dl>
+					<div class="row">
+						<div class="col-lg-4"><b>Acceso</b></div>
+						<div class="col-lg-8">&raquo; <a target="_blank" href="<?php echo $analytics->ANALYTICS_URL?>"><?php echo $analytics->ANALYTICS_URL?></a></div>
+					</div>
+					<div class="row">
+						<div class="col-lg-4"><b>Usuario</b></div>
+						<div class="col-lg-8">&raquo; <?php echo $analytics->ANALYTICS_USER?></div>
+					</div>
+					<div class="row">
+						<div class="col-lg-4"><b>Contrase&ntilde;a</b></div>
+						<div class="col-lg-8">&raquo; <?php echo $analytics->ANALYTICS_PASSWORD?></div>
+					</div>
 					<?php endif;?>
 				</div>
 			</div>
-			<div class="row-fluid">
-				<div class="span12 widget">
+			<div class="row">
+				<div class="col-lg-12 widget">
 					<h6 class="title">Documentaci&oacute;n</h6>
 					<table class="table table-hover">
 						<tr>
@@ -110,14 +113,21 @@
 				</div>
 			</div>
 		</div>
-		<div class="span8 widget">
+		<div class="col-lg-8 widget">
 			<h6 class="title">Gr&aacute;fico de visitas</h6>
 			<?php if($google_api_connect === ''):?>
 				<?php if(isset($analyticsResponse) && $analyticsResponse['ERROR'] === FALSE):?>
-				<table class="table table-bordered">
-					<tr>
-						<td>
-							<div id="line_chart_div" style="height: 330px;"></div></td></tr></table>
+				<div class="row">
+					<div class="col-lg-12 scrollx">
+						<table class="table table-bordered">
+							<tr>
+								<td>
+									<div id="line_chart_div" style="height: 330px;"></div>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
 				<?php else:?>
 				<div class="alert alert-danger alert-block">
 					<h4>Error en la conexión con Analytics</h4>

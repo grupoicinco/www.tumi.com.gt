@@ -1,14 +1,14 @@
-<div id="content" class="container-fluid">
+<div id="content" class="container">
 	<div class="page-header">
 		<h1> <?php echo $page_title; ?><small></small></h1>
 	</div>
-	<div class="row-fluid">
-		<div class="well span12">
+	<div class="row">
+		<div class="well col-lg-12">
 			<a class="btn btn-primary" href="./<?=$current_plugin?>/create_new_row"><?=$create_new_row?></a>
 		</div>
 	</div>
-	<div class="row-fluid">
-		<div class="span12">
+	<div class="row">
+		<div class="col-lg-12">
 			<table class="table table-striped table-hover">
 				<thead>
 					<tr>

@@ -49,9 +49,9 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'c04305_FWUSER';
-$db['default']['password'] = '5hDMF(NDf?wQ';
-$db['default']['database'] = 'c04305_FRAMEWORK_PERINOLA';
+$db['default']['username'] = 'grupoi5_tumi';
+$db['default']['password'] = 'OwaQtfuRX9!e';
+$db['default']['database'] = 'grupoi5_tumi';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;

@@ -91,10 +91,10 @@ class Cms_plugin_images_model extends MY_Model {
 	 	return str_replace('./', '/', $this->upload_path);
 	 }
 	 //Desplegar archivo de la imagen
-	 public function image_file_display($image_name){
+	 public function image_file_display($imgid){
 	 	$query = $this->db->select('IMAGE_FILE')
 		->from($this->_table)
-		->where('IMAGE_NAME', $image_name)->limit(1)->get();
+		->where('ID', $imgid)->limit(1)->get();
 		$imagename = $query->row();
 		
 		return $imagename->IMAGE_FILE;

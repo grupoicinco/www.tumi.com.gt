@@ -1,12 +1,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <head>
 	<meta http-equiv="Content-Type" content="<?php echo $RESOURCE_THEME_HTMLTYPE?>; charset=<?php echo $RESOURCE_THEME_CHARSET?>" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<title><?php echo $engine_show_header_website.'::'.$engine_show_header_pagename; ?></title>
 	<!-- FRAMEWORK STYLESHEETS -->
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
     <link rel="stylesheet" href="<?php echo base_url('library/cms/css/bootstrap.min.css'); ?>" type="text/css" media="screen" />
-    <link rel="stylesheet" href="<?php echo base_url('library/cms/css/bootstrap-responsive.min.css'); ?>" type="text/css" media="screen" />
-    <link rel="stylesheet" href="<?php echo base_url('library/cms/css/bootstrap-responsive-fluid.css'); ?>" type="text/css" media="screen" />
+    <link rel="stylesheet" href="<?php echo base_url('library/cms/css/bootstrapaddons.css'); ?>" type="text/css" media="screen" />
     <link rel="stylesheet" href="<?php echo base_url('library/cms/css/menu.css'); ?>" type="text/css" media="screen" />
     <link rel="stylesheet" href="<?php echo base_url('library/cms/css/preview.css'); ?>" type="text/css" media="screen" />
     <link rel="stylesheet" href="<?php echo base_url('library/cms/css/prometheus.css'); ?>" type="text/css" media="screen" />
@@ -39,7 +40,8 @@
 		$('.textarea').wysihtml5();
 		$(prettyPrint);
 		
-		$(".alert").alert()
+		$(".alert").alert();
+		
 	});
 	</script>
 
@@ -53,57 +55,72 @@
 ============================= -->
 <header>
 
-    <!-- navbar -->
-    <div class="navbar navbar-inverse">
-        <div class="navbar-inner">
-            <div class="container">
+<nav class="navbar navbar-inverse" role="navigation">
+	<!-- Brand and toggle get grouped for better mobile display -->
+	<div class="navbar-header col-lg-2">
+  	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+		<span class="sr-only">Toggle navigation</span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+  	</button>
+  	<a class="navbar-brand" href="<?php echo $this->config->site_url('cms')?>"><img src="<?php echo base_url('library/cms/img/caja_verde.png')?>" alt="" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CajaVerde</a>
+	</div>
 
-                <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </a>
-
-                <!-- Be sure to leave the brand out there if you want it shown -->
-                <!-- logo -->
-                <a class="logo" href="<?php echo $this->config->site_url('cms')?>">Perinola CMS<sup>&reg;</sup></a>
-
-                <!-- breadcrumbs -->
-                <?php 
-                if($this->session->userdata('logged_in')):
-                	echo set_breadcrumb();
-				endif;
-				?>
-				
-                <!-- profile bar -->
-                <?php if($this->session->userdata('logged_in')):?>
-                <ul class="nav pull-right">
-                    <li class="profile">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php echo $this->session->userdata('USERNAME')?><span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                            <li><a tabindex="-1" href="<?php echo $this->config->site_url('cms/panel_perfil/')?>">Editar Perfil</a></li>
-                            <?php if($this->session->userdata('ACCESS_LEVEL') > 999):?>
-                            <li><a tabindex="-1" href="<?php echo $this->config->site_url('cms/panel_usuarios/')?>">Administrar Usuarios</a></li>
-                            <?php endif?>
-                            <li class="divider"></li>
-                            <li><a tabindex="-1" href="<?php echo $this->config->site_url("cms/panel_login/logoff")?>">Cerrar Sesión</a></li>
-                        </ul>
-                    </li>
-                </ul>
-				<?php endif;?>
-            </div>
-        </div>
-    </div>
-
+	<!-- breadcrumb -->
+	<div class="navbar-left visible-lg visible-md">
+		<?php
+		if($this->session->userdata('logged_in')):
+			echo set_breadcrumb();
+		endif;?>
+	</div>
+	
+	<!-- Collect the nav links, forms, and other content for toggling -->
+	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	<?php if($this->session->userdata('logged_in')):?>
+	
+	<ul class="nav navbar-nav visible-xs">
+    	<?php foreach($CMS_PAGES_LIST as $btn):?>
+    	<?php $active = ($btn->PATH === $engine_show_header_pagename)? 'class="active"':'';?>
+    	<?php $href = (!empty($btn->CHILDS))?'javascript:void(0);':$this->config->site_url("cms/".strtolower($btn->PATH))?>
+        <li <?=$active?>>
+            <a href="<?=$href?>"><?=$btn->LABEL?></a>
+            <?php if (count($btn->CHILDS) > 0):?>
+            <span><?=count($btn->CHILDS)?></span>
+            <ul>
+            	<?php foreach($btn->CHILDS as $btnchild):?>
+                <li><a href="<?=$this->config->site_url("cms/".strtolower($btnchild->PATH))?>"><?=$btnchild->LABEL?></a></li>
+                <?php endforeach?>
+            </ul>
+            <?php endif;?>
+        </li>
+        <?php endforeach;?>
+	</ul>
+	
+	<ul class="nav navbar-nav navbar-right">
+		<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $this->session->userdata('USERNAME')?> <b class="caret"></b></a>
+			<ul class="dropdown-menu">
+				<li><a href="<?php echo $this->config->site_url('cms/panel_perfil/')?>"><i class="glyphicon glyphicon-edit"></i> Editar Perfil</a></li>
+				<?php if($this->session->userdata('ACCESS_LEVEL') >= 999):?>
+				<li><a href="<?php echo $this->config->site_url('cms/panel_usuarios/')?>"><div class="glyphicon glyphicon-user"></div> Administrar Usuarios</a></li>
+				<?php endif?>
+				<li class="divider"></li>
+				<li><a href="<?php echo $this->config->site_url("cms/panel_login/logoff")?>"><i class="glyphicon glyphicon-ban-circle"></i> Cerrar Sesión</a></li>
+			</ul>
+		</li>
+	</ul>
+	<?php endif;?>
+	</div><!-- /.navbar-collapse -->
+</nav>
 </header>
+
 
 <?php echo $this->fw_alerts->display_alert_message();?>
 
 <!-- ========================
             Sidebar
 ============================= -->
-<aside class="visible-desktop">
+<aside class="visible-lg visible-md">
 	<?php if($this->session->userdata('logged_in')):?>
     <!-- search -->
     <form class="form-search">

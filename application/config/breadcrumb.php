@@ -36,7 +36,7 @@ $config['multilang'] = FALSE;
  * then initial/home breadcrumb will disappear
  *
  */
-$config['set_home'] = "Home";
+$config['set_home'] = "Inicio";
 
 /**
  * ------------------------
@@ -49,7 +49,7 @@ $config['set_home'] = "Home";
  * $config['attr_home'] = array('style' => 'text-decoration:none', 'class' = 'home_breadcrumb');
  * Only work if unlink_home is set to FALSE
  */
-$config['attr_home'] = array('class' => 'home');
+$config['attr_home'] = array();
 
 /**
  * ------------------------
@@ -69,7 +69,7 @@ $config['unlink_home'] = FALSE;
  * Default value:
  * $config['delimiter'] = ' > ';
  */
-$config['delimiter'] = "<li><span class='divider'></span></li>";
+$config['delimiter'] = "";
 
 /**
  * --------------------------
@@ -235,7 +235,7 @@ $config['exclude_segment'] = array();
  * Set use_wrapper to TRUE to use this feature.
  */
 $config['use_wrapper'] = TRUE;
-$config['wrapper'] = '<ul class="breadcrumb visible-desktop">|</ul>';
+$config['wrapper'] = '<ol class="breadcrumb">|</ol>';
 $config['wrapper_inline'] = '<li>|</li>';
 
 /**

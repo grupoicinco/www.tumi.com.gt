@@ -11,7 +11,8 @@ class PL_Controller extends MY_Controller {
 		parent::__construct();
 		
 		//Load libraries
-		$this->load->library('pagination');
+		$this->load->library('pagination'); //Paginación
+		$this->load->library('form_validation'); //Validar formulario
 		
 		//Load the model
         $ci = get_instance();
@@ -19,6 +20,10 @@ class PL_Controller extends MY_Controller {
         $this->load->model('cms/cms_plugin_model', 'plugins_model');
 		
 		$this->pagination_total_rows		= 200; //Número total de items a desplegar
+		$this->uri_segment					= 5;
+		
+		//Set validation characteristics
+		$this->form_validation->set_error_delimiters("<div class='alert alert-danger fade in'>", '<a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a></div>');
 		
 	}
 	
@@ -66,7 +71,8 @@ class PL_Controller extends MY_Controller {
 			$config = array(
 						'base_url'			=> (empty($this->base_url))?base_url('cms/'.strtolower($this->current_plugin).'/index/'.$display_filter.'/'):$this->base_url,
 						'total_rows'		=> $this->pagination_total_rows,
-						'per_page'			=> $this->pagination_per_page
+						'per_page'			=> $this->pagination_per_page,
+						'uri_segment'		=> $this->uri_segment
 					);
 			$this->pagination->initialize($config);
 			$data_array['pagination']		= $this->pagination->create_links();
@@ -84,11 +90,12 @@ class PL_Controller extends MY_Controller {
 		//Si es el template default, se envían los campos default
 		if($template_view == 'plugin_create'):
 		//Apertura del formulario
-		$view_data['form_html']			= form_open_multipart('cms/'.strtolower($this->current_plugin).'/post_new_val', array('class' => 'form-horizontal'));
+		$view_data['form_html']			= form_open_multipart('cms/'.strtolower($this->current_plugin).'/post_new_val', array('class' => 'form-horizontal col-lg-9', 'role' => 'form'));
+		$view_data['form_html']			.=  "<div class='row'><div class='col-lg-12 col-md-12 col-sm-12'>".validation_errors()."</div></div>";
 		//Campos del formulario
 		$view_data['form_html']			.= $plugin_html['form_html'];
 		//Botones del formulario
-		$view_data['form_html']			.= '<div class="form-actions">'.form_submit(array('value' => $this->plugin_button_create, 'class' => 'btn btn-primary', 'name' => 'POST_SUBMIT')).' '.anchor('cms/'.strtolower($this->current_plugin), $this->plugin_button_cancel, array('class'=>'btn')).'</div>';
+		$view_data['form_html']			.= '<div class="form-actions">'.form_submit(array('value' => $this->plugin_button_create, 'class' => 'btn btn-primary', 'name' => 'POST_SUBMIT')).' '.anchor('cms/'.strtolower($this->current_plugin), $this->plugin_button_cancel, array('class'=>'btn btn-default')).'</div>';
 		//Formulario extra a enviar
 		$view_data['form_html']			.= $plugin_html['extra_form'];
 		//Si no es el template default, se envían los parámetros establecidos en la función del plugin
@@ -111,7 +118,8 @@ class PL_Controller extends MY_Controller {
 		//Si es el template default, se envían los campos default
 		if($template_view == 'plugin_create'):
 		//Apertura del formulario
-		$view_data['form_html']			=  form_open_multipart('cms/'.strtolower($this->current_plugin).'/post_update_val/'.$action_ID, array('class' => 'form-horizontal'));
+		$view_data['form_html']			=  form_open_multipart('cms/'.strtolower($this->current_plugin).'/post_update_val/'.$action_ID, array('class' => 'form-horizontal', 'role' => 'form'));
+		$view_data['form_html']			.=  "<div class='row'><div class='col-lg-12 col-md-12 col-sm-12'>".validation_errors()."</div></div>";
 		//Campos del formulario
 		$view_data['form_html']			.= form_hidden('POST_ID', $action_ID);
 		$view_data['form_html'] 		.= $plugin_html['form_html'];
@@ -119,7 +127,7 @@ class PL_Controller extends MY_Controller {
 		$view_data['form_html']			.= '<div class="form-actions">';
 		$view_data['form_html']			.= form_submit(array('value' => $this->plugin_button_update, 'class' => 'btn btn-primary', 'name' => 'POST_SUBMIT')).' ';
 		$view_data['form_html']			.= form_submit(array('value' => $this->plugin_button_delete, 'class' => 'btn btn-danger', 'name' => 'POST_SUBMIT')).' ';
-		$view_data['form_html']			.= anchor('cms/'.strtolower($this->current_plugin), $this->plugin_button_cancel, array('class'=>'btn')).' ';
+		$view_data['form_html']			.= anchor('cms/'.strtolower($this->current_plugin), $this->plugin_button_cancel, array('class'=>'btn btn-default')).' ';
 		$view_data['form_html']			.= '</div>';
 		//Formulario extra a enviar
 		$view_data['form_html']			.= $plugin_html['extra_form'];

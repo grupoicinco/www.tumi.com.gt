@@ -87,18 +87,19 @@ class Panel_usuarios extends PL_Controller {
 	public function _html_plugin_create(){
         
 		//Formulario
-		$data_array['form_html']			=  "<div class='control-group'>".form_label($this->plugin_display_array[1],'',array('class' => 'control-label'))."<div class='controls'>".form_input(array('name' => 'USERNAME', 'class' => 'span6'))."</div></div>";
-		$data_array['form_html']			.= "<div class='control-group'>".form_label($this->plugin_display_array[2],'',array('class' => 'control-label'))."<div class='controls'>".form_input(array('name' => 'EMAIL', 'class' => 'span6'))."</div></div>";
-		$data_array['form_html']			.= "<div class='control-group'>".form_label($this->plugin_display_array[3],'',array('class' => 'control-label'))."<div class='controls'>".form_password(array('name' => 'PASSWORD', 'class' => 'span6'))."</div></div>";
+		$data_array['form_html']			=  "<div class='form-group'>".form_label($this->plugin_display_array[1],'',array('class' => 'form-label col-lg-2'))."<div class='col-lg-10'>".form_input(array('name' => 'USERNAME', 'class' => 'form-control'))."</div></div>";
+		$data_array['form_html']			.= "<div class='form-group'>".form_label($this->plugin_display_array[2],'',array('class' => 'form-label col-lg-2'))."<div class='col-lg-10'>".form_input(array('name' => 'EMAIL', 'class' => 'form-control'))."</div></div>";
+		$data_array['form_html']			.= "<div class='form-group'>".form_label($this->plugin_display_array[3],'',array('class' => 'form-label col-lg-2'))."<div class='col-lg-10'>".form_password(array('name' => 'PASSWORD', 'class' => 'form-control'))."</div></div>";
 		
 		return $data_array;
     }
 	public function _html_plugin_update($result_data){
 		
 		//Formulario
-		$data_array['form_html']			=  "<div class='control-group'>".form_label($this->plugin_display_array[1],'',array('class' => 'control-label'))."<div class='controls'>".form_input(array('name' => 'USERNAME', 'value' => $result_data->USERNAME, 'class' => 'span6'))."</div></div>";
-		$data_array['form_html']			.= "<div class='control-group'>".form_label($this->plugin_display_array[2],'',array('class' => 'control-label'))."<div class='controls'>".form_input(array('name' => 'EMAIL', 'value' => $result_data->EMAIL, 'class' => 'span6'))."</div></div>";
-		$data_array['form_html']			.= "<div class='control-group'>".form_label($this->plugin_display_array[3],'',array('class' => 'control-label'))."<div class='controls'>".form_password(array('name' => 'UPDATED_PASSWORD', 'class' => 'span6'))."</div></div>";
+		$data_array['form_html']			=  "<div class='form-group'>".form_label($this->plugin_display_array[1],'',array('class' => 'form-label col-lg-2'))."<div class='col-lg-10'>".form_input(array('name' => 'USERNAME', 'value' => $result_data->USERNAME, 'class' => 'form-control'))."</div></div>";
+		$data_array['form_html']			.= "<div class='form-group'>".form_label($this->plugin_display_array[2],'',array('class' => 'form-label col-lg-2'))."<div class='col-lg-10'>".form_input(array('name' => 'EMAIL', 'value' => $result_data->EMAIL, 'class' => 'form-control'))."</div></div>";
+		$data_array['form_html']			.= "<div class='form-group'>".form_label($this->plugin_display_array[3],'',array('class' => 'form-label col-lg-2'))."<div class='col-lg-10'>".form_password(array('name' => 'UPDATED_PASSWORD', 'class' => 'form-control'))."</div></div>";
+		$data_array['form_html']			.= form_hidden('ACCESS_LEVEL', $result_data->ACCESS_LEVEL);
 		
 		return $data_array;
 	}
@@ -107,7 +108,7 @@ class Panel_usuarios extends PL_Controller {
 	public function post_new_val(){
 		$submit_posts 					= $this->input->post();
 		$submit_posts['PASSWORD']		= md5($submit_posts['PASSWORD']);
-		$submit_posts['ACCESS_LEVEL']	= '999';
+		$submit_posts['ACCESS_LEVEL']	= '990';
 		$submit_posts['USER_DATEADDED']	= date('Y-m-d');
 		
 		return $this->_set_new_val($submit_posts);
@@ -119,7 +120,7 @@ class Panel_usuarios extends PL_Controller {
 		$submit_posts['PASSWORD']		= md5($submit_posts['UPDATED_PASSWORD']);
 		endif;
 		unset($submit_posts['UPDATED_PASSWORD']);
-		$submit_posts['ACCESS_LEVEL']	= '999';
+		$submit_posts['ACCESS_LEVEL']	= $submit_posts['ACCESS_LEVEL'];
 		$submit_posts['USER_DATEADDED']	= date('Y-m-d');
 		
 		return $this->_set_update_val($submit_posts);

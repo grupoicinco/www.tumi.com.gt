@@ -1,0 +1,8 @@
+RewriteEngine on
+RewriteCond $1 !^(index\.php|images|user_files|library|certificado_cambio|robots\.txt)
+RewriteRule ^(.*)$ ./index.php/$1 [L]
+
+RewriteCond %{HTTP_HOST} ^tumi\.com\.gt$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.tumi\.com\.gt$
+RewriteRule ^/?$ "http\:\/\/intl\.tumi\.com\/" [R=301,L]
+

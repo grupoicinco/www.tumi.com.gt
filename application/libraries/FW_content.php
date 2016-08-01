@@ -27,10 +27,10 @@ class FW_content {
 		return $this->single_post($post_key, TRUE);
 	}
 	//Obtener imagen a desplegar
-	public function imgsrc($img_name){
+	public function imgsrc($imgid){
 		$this->FW->load->model('cms/cms_plugin_images_model','images_model');
 		
-		$img_file			= $this->FW->images_model->image_file_display($img_name);
+		$img_file			= $this->FW->images_model->image_file_display($imgid);
 		$img_route			= $this->FW->images_model->display_image_route();
 		$imgsrc				= base_url($img_route.$img_file);
 		

@@ -107,3 +107,43 @@ function mysql_date_to_dmy($date){
   	$image_properties['src'] = ($library == true)?base_url('library/images/'.$src):$src;
 	return img($image_properties);
   }
+  /**
+   * Obtener zonas de Cargo Expresso
+   */
+ function caex_zones(){
+ 	$zonas = array(
+ 	"Antigua",
+ 	"Barberena",
+ 	"Chimaltenango",
+ 	"Escuintla",
+ 	"Chiquimula",
+ 	"Chiquimulilla",
+ 	"Jalapa",
+ 	"Jutiapa",
+ 	"Quiché",
+ 	"Mazatenango",
+ 	"Puerto de San José",
+ 	"Retalhuleu",
+ 	"Santa Lucía Cotzumalguapa",
+ 	"Sololá",
+ 	"Teculután",
+ 	"Tiquisate",
+ 	"Zacapa",
+ 	"Cobán",
+ 	"Coatepeque",
+ 	"Esquipulas",
+ 	"Huehuetenango",
+ 	"Los Amates",
+ 	"Malacatán",
+ 	"Morales",
+ 	"Puerto Barrios",
+ 	"Quetzaltenango",
+ 	"Salamá",
+ 	"San Marcos",
+ 	"Santo Tomás de Castilla",
+ 	"Tecún Umán",
+ 	"Totonicapán",
+	"Petén");
+	
+	return $zonas;
+ } 

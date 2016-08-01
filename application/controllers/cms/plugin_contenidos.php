@@ -89,10 +89,10 @@ class Plugin_contenidos extends PL_Controller {
 		$options_values_array 				= $this->_get_framework_pages();
 		
 		//Formulario
-		$data_array['form_html']			= "<div class='control-group'>".form_label($this->plugin_display_array[1],'',array('class' => 'control-label'))."<div class='controls'>".form_input(array('name' => 'POST_TITLE', 'class' => 'span6'))."</div></div>";
-		$data_array['form_html']			.= "<div class='control-group'>".form_label($this->plugin_display_array[3],'',array('class' => 'control-label'))."<div class='controls'>".form_input(array('name' => 'POST_KEY', 'class' => 'span6'))."</div></div>";
-		$data_array['form_html']			.= "<div class='control-group'>".form_label($this->plugin_display_array[4],'',array('class' => 'control-label'))."<div class='controls'>".form_dropdown('POST_PAGE', $options_values_array)."</div></div>";
-		$data_array['form_html']			.= "<div class='control-group'>".form_label($this->plugin_display_array[2],'',array('class' => 'control-label'))."<div class='controls'>".form_textarea(array('name' => 'POST_DETAIL', 'class' => 'span6 textarea'))."<span class='help-block'>*No pegar texto directamente desde word</span></div></div>";
+		$data_array['form_html']			= "<div class='form-group'>".form_label($this->plugin_display_array[1],'',array('class' => 'control-label col-lg-2'))."<div class='col-lg-10'>".form_input(array('name' => 'POST_TITLE', 'class' => 'form-control'))."</div></div>";
+		$data_array['form_html']			.= "<div class='form-group'>".form_label($this->plugin_display_array[3],'',array('class' => 'control-label col-lg-2'))."<div class='col-lg-10'>".form_input(array('name' => 'POST_KEY', 'class' => 'form-control'))."</div></div>";
+		$data_array['form_html']			.= "<div class='form-group'>".form_label($this->plugin_display_array[4],'',array('class' => 'control-label col-lg-2'))."<div class='col-lg-10'>".form_dropdown('POST_PAGE', $options_values_array, NULL, 'class="form-control"')."</div></div>";
+		$data_array['form_html']			.= "<div class='form-group'>".form_label($this->plugin_display_array[2],'',array('class' => 'control-label col-lg-2'))."<div class='col-lg-10'>".form_textarea(array('name' => 'POST_DETAIL', 'class' => 'form-control textarea'))."<span class='help-block'>*No pegar texto directamente desde word</span></div></div>";
 		
 		
 		return $data_array;
@@ -104,10 +104,10 @@ class Plugin_contenidos extends PL_Controller {
 		
 		
 		//Formulario
-		$data_array['form_html']			= "<div class='control-group'>".form_label($this->plugin_display_array[1],'',array('class' => 'control-label'))."<div class='controls'>".form_input(array('name' => 'POST_TITLE', 'value' => $result_data->POST_TITLE, 'class' => 'span6'))."</div></div>";
-		$data_array['form_html']			.= "<div class='control-group'>".form_label($this->plugin_display_array[3],'',array('class' => 'control-label'))."<div class='controls'>".form_input(array('name' => 'POST_KEY', 'value' => $result_data->POST_KEY, 'class' => 'span6'))."</div></div>";
-		$data_array['form_html']			.= "<div class='control-group'>".form_label($this->plugin_display_array[4],'',array('class' => 'control-label'))."<div class='controls'>".form_dropdown('POST_PAGE', $options_values_array, $result_data->POST_PAGE)."</div></div>";
-		$data_array['form_html']			.= "<div class='control-group'>".form_label($this->plugin_display_array[2],'',array('class' => 'control-label'))."<div class='controls'>".form_textarea(array('name' => 'POST_DETAIL', 'value' => $result_data->POST_DETAIL, 'class' => 'span6 textarea'))."<span class='help-block'>*No pegar texto directamente desde word</span></div></div>";
+		$data_array['form_html']			= "<div class='form-group'>".form_label($this->plugin_display_array[1],'',array('class' => 'control-label col-lg-2'))."<div class='col-lg-10'>".form_input(array('name' => 'POST_TITLE', 'value' => $result_data->POST_TITLE, 'class' => 'form-control'))."</div></div>";
+		$data_array['form_html']			.= "<div class='form-group'>".form_label($this->plugin_display_array[3],'',array('class' => 'control-label col-lg-2'))."<div class='col-lg-10'>".form_input(array('name' => 'POST_KEY', 'value' => $result_data->POST_KEY, 'class' => 'form-control'))."</div></div>";
+		$data_array['form_html']			.= "<div class='form-group'>".form_label($this->plugin_display_array[4],'',array('class' => 'control-label col-lg-2'))."<div class='col-lg-10'>".form_dropdown('POST_PAGE', $options_values_array, $result_data->POST_PAGE, 'class="form-control"')."</div></div>";
+		$data_array['form_html']			.= "<div class='form-group'>".form_label($this->plugin_display_array[2],'',array('class' => 'control-label col-lg-2'))."<div class='col-lg-10'>".form_textarea(array('name' => 'POST_DETAIL', 'value' => $result_data->POST_DETAIL, 'class' => 'form-control textarea'))."<span class='help-block'>*No pegar texto directamente desde word</span></div></div>";
 		
 		
 		return $data_array;

@@ -5,8 +5,8 @@
         "font-styles": function(locale, options) {
             var size = (options && options.size) ? ' btn-'+options.size : '';
             return "<li class='dropdown'>" +
-              "<a class='btn dropdown-toggle" + size + "' data-toggle='dropdown' href='#'>" +
-              "<i class='icon-font'></i>&nbsp;<span class='current-font'>" + locale.font_styles.normal + "</span>&nbsp;<b class='caret'></b>" +
+              "<a class='btn btn-sm btn-default dropdown-toggle" + size + "' data-toggle='dropdown' href='#'>" +
+              "<div class='glyphicon glyphicon-font'></div>&nbsp;<span class='current-font'>" + locale.font_styles.normal + "</span>&nbsp;<b class='caret'></b>" +
               "</a>" +
               "<ul class='dropdown-menu'>" +
                 "<li><a data-wysihtml5-command='formatBlock' data-wysihtml5-command-value='div' tabindex='-1'>" + locale.font_styles.normal + "</a></li>" +
@@ -21,9 +21,9 @@
             var size = (options && options.size) ? ' btn-'+options.size : '';
             return "<li>" +
               "<div class='btn-group'>" +
-                "<a class='btn" + size + "' data-wysihtml5-command='bold' title='CTRL+B' tabindex='-1'>" + locale.emphasis.bold + "</a>" +
-                "<a class='btn" + size + "' data-wysihtml5-command='italic' title='CTRL+I' tabindex='-1'>" + locale.emphasis.italic + "</a>" +
-                "<a class='btn" + size + "' data-wysihtml5-command='underline' title='CTRL+U' tabindex='-1'>" + locale.emphasis.underline + "</a>" +
+                "<a class='btn btn-md btn-default" + size + "' data-wysihtml5-command='bold' title='CTRL+B' tabindex='-1'><span class='glyphicon glyphicon-bold'></span></a>" +
+                "<a class='btn btn-md btn-default" + size + "' data-wysihtml5-command='italic' title='CTRL+I' tabindex='-1'><span class='glyphicon glyphicon-italic'></a>" +
+                "<a class='btn btn-md btn-default" + size + "' data-wysihtml5-command='underline' title='CTRL+U' tabindex='-1'><span class='glyphicon glyphicon-text-width'></a>" +
               "</div>" +
             "</li>";
         },
@@ -32,10 +32,10 @@
             var size = (options && options.size) ? ' btn-'+options.size : '';
             return "<li>" +
               "<div class='btn-group'>" +
-                "<a class='btn" + size + "' data-wysihtml5-command='insertUnorderedList' title='" + locale.lists.unordered + "' tabindex='-1'><i class='icon-list'></i></a>" +
-                "<a class='btn" + size + "' data-wysihtml5-command='insertOrderedList' title='" + locale.lists.ordered + "' tabindex='-1'><i class='icon-th-list'></i></a>" +
-                "<a class='btn" + size + "' data-wysihtml5-command='Outdent' title='" + locale.lists.outdent + "' tabindex='-1'><i class='icon-indent-right'></i></a>" +
-                "<a class='btn" + size + "' data-wysihtml5-command='Indent' title='" + locale.lists.indent + "' tabindex='-1'><i class='icon-indent-left'></i></a>" +
+                "<a class='btn btn-md btn-default" + size + "' data-wysihtml5-command='insertUnorderedList' title='" + locale.lists.unordered + "' tabindex='-1'><span class='glyphicon glyphicon-list'></span></a>" +
+                "<a class='btn btn-md btn-default" + size + "' data-wysihtml5-command='insertOrderedList' title='" + locale.lists.ordered + "' tabindex='-1'><span class='glyphicon glyphicon-th-list'></span></a>" +
+                "<a class='btn btn-md btn-default" + size + "' data-wysihtml5-command='Outdent' title='" + locale.lists.outdent + "' tabindex='-1'><span class='glyphicon glyphicon-indent-right'></span></a>" +
+                "<a class='btn btn-md btn-default" + size + "' data-wysihtml5-command='Indent' title='" + locale.lists.indent + "' tabindex='-1'><span class='glyphicon glyphicon-indent-left'></span></a>" +
               "</div>" +
             "</li>";
         },
@@ -43,40 +43,48 @@
         "link": function(locale, options) {
             var size = (options && options.size) ? ' btn-'+options.size : '';
             return "<li>" +
-              "<div class='bootstrap-wysihtml5-insert-link-modal modal hide fade'>" +
-                "<div class='modal-header'>" +
-                  "<a class='close' data-dismiss='modal'>&times;</a>" +
-                  "<h3>" + locale.link.insert + "</h3>" +
-                "</div>" +
-                "<div class='modal-body'>" +
-                  "<input value='http://' class='bootstrap-wysihtml5-insert-link-url input-xlarge'>" +
-                "</div>" +
-                "<div class='modal-footer'>" +
-                  "<a href='#' class='btn' data-dismiss='modal'>" + locale.link.cancel + "</a>" +
-                  "<a href='#' class='btn btn-primary' data-dismiss='modal'>" + locale.link.insert + "</a>" +
-                "</div>" +
+              "<div class='bootstrap-wysihtml5-insert-link-modal modal fade' id='bootstrap-wysihtml5-insert-link-modal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>" +
+				'<div class="modal-dialog">'+
+					'<div class="modal-content">'+
+						"<div class='modal-header'>" +
+							'<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' +
+                  			'<h4 class="modal-title" id="myModalLabel">'+ locale.link.insert +'</h4>'+
+                		"</div>" +
+                		"<div class='modal-body'>" +
+							"<input class='form-control' value='http://' class='bootstrap-wysihtml5-insert-link-url input-xlarge'>" +
+                		"</div>" +
+                		"<div class='modal-footer'>" +
+                  			"<a href='#' class='btn btn-default' data-dismiss='modal'>" + locale.link.cancel + "</a>" +
+                  			"<a href='#' class='btn btn-primary' data-dismiss='modal'>" + locale.link.insert + "</a>" +
+                		"</div>" +
+              		"</div>" +
+              	"</div>" +
               "</div>" +
-              "<a class='btn" + size + "' data-wysihtml5-command='createLink' title='" + locale.link.insert + "' tabindex='-1'><i class='icon-share'></i></a>" +
+              "<a class='btn btn-md btn-default" + size + "' data-wysihtml5-command='createLink' title='" + locale.link.insert + "' tabindex='-1' data-toggle='modal' data-target='#bootstrap-wysihtml5-insert-link-modal'><span class='glyphicon glyphicon-link'></span></a>" +
             "</li>";
         },
 
         "image": function(locale, options) {
             var size = (options && options.size) ? ' btn-'+options.size : '';
             return "<li>" +
-              "<div class='bootstrap-wysihtml5-insert-image-modal modal hide fade'>" +
-                "<div class='modal-header'>" +
-                  "<a class='close' data-dismiss='modal'>&times;</a>" +
-                  "<h3>" + locale.image.insert + "</h3>" +
-                "</div>" +
-                "<div class='modal-body'>" +
-                  "<input value='http://' class='bootstrap-wysihtml5-insert-image-url input-xlarge'>" +
-                "</div>" +
-                "<div class='modal-footer'>" +
-                  "<a href='#' class='btn' data-dismiss='modal'>" + locale.image.cancel + "</a>" +
-                  "<a href='#' class='btn btn-primary' data-dismiss='modal'>" + locale.image.insert + "</a>" +
-                "</div>" +
+              "<div class='bootstrap-wysihtml5-insert-image-modal modal fade' id='bootstrap-wysihtml5-insert-image-modal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>" +
+				'<div class="modal-dialog">'+
+					'<div class="modal-content">'+
+						"<div class='modal-header'>" +
+							'<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' +
+                  			'<h4 class="modal-title" id="myModalLabel">'+ locale.image.insert +'</h4>'+
+                		"</div>" +
+                		"<div class='modal-body'>" +
+                  			"<input class='form-control' value='http://' class='bootstrap-wysihtml5-insert-image-url input-xlarge'>" +
+                		"</div>" +
+                		"<div class='modal-footer'>" +
+                  			"<a href='#' class='btn btn-default' data-dismiss='modal'>" + locale.image.cancel + "</a>" +
+                  			"<a href='#' class='btn btn-primary' data-dismiss='modal'>" + locale.image.insert + "</a>" +
+                		"</div>" +
+              		"</div>" +
+              	"</div>" +
               "</div>" +
-              "<a class='btn" + size + "' data-wysihtml5-command='insertImage' title='" + locale.image.insert + "' tabindex='-1'><i class='icon-picture'></i></a>" +
+              "<a class='btn btn-md btn-default" + size + "' data-wysihtml5-command='insertImage' title='" + locale.image.insert + "' tabindex='-1' data-toggle='modal' data-target='#bootstrap-wysihtml5-insert-image-modal'><span class='glyphicon glyphicon-picture'></span></a>" +
             "</li>";
         },
 
@@ -84,7 +92,7 @@
             var size = (options && options.size) ? ' btn-'+options.size : '';
             return "<li>" +
               "<div class='btn-group'>" +
-                "<a class='btn" + size + "' data-wysihtml5-action='change_view' title='" + locale.html.edit + "' tabindex='-1'><i class='icon-pencil'></i></a>" +
+                "<a class='btn btn-md btn-default" + size + "' data-wysihtml5-action='change_view' title='" + locale.html.edit + "' tabindex='-1'><span class='glyphicon glyphicon-pencil'></span></a>" +
               "</div>" +
             "</li>";
         },

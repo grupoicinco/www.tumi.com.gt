@@ -65,6 +65,11 @@ class MY_Loader extends CI_Loader {
 		
 		$data					= $instance->fw_layout_data->header_data();
 		
+		//Dejar establecido como sitio beta en desarrollo, hasta su publicación.
+		if(base_url() != "http://grupoi5.com/www.tumi.com.gt/"):
+			redirect('http://intl.tumi.com');
+		endif;
+		
 		$content  = $instance->load->view('layout/header', $data, $return);
 		$content .= $instance->load->view($template_name, $vars, $return);
 		$content .= $instance->load->view('layout/footer', $data, $return);

@@ -103,12 +103,11 @@ class FW_alerts {
 	}
 	private function alert_type($type = 'WARNING'){
 		$return_class_type		= array(
-									'ERROR'		=> 'alert-error',
+									'ERROR'		=> 'alert-danger',
 									'SUCCESS'	=> 'alert-success',
 									'INFO'		=> 'alert-info',
-									'WARNING'	=> ''
+									'WARNING'	=> 'alert-warning'
 									);
-
 		if(array_key_exists($type, $return_class_type)):
 			return $return_class_type[$type];
 		else:

@@ -83,24 +83,30 @@ class Plugin_imagenes extends MY_Controller {
 		$result_array['directory']	= $data_array['directory'];
 		
 		
-		$result_array['image_content']		= '<div class="row-fluid">';
-		$result_array['image_content']		.= 	'<div class="span12">';
+		$result_array['image_content']		= '<div class="row">';
+		$result_array['image_content']		.= 	'<div class="col-lg-12">';
 		foreach($result_array['images'] as $pageID => $page):
 		$result_array['image_content']		.= 		'<h4>'.$page['PAGE'].'</h4>';
-		$result_array['image_content']		.= 		'<ul class="thumbnails">';
-			foreach($page['IMAGES'] as $i => $image):
-			$result_array['image_content']		.= 		'<li class="span3">';
+		$page['IMAGES'] = array_chunk($page['IMAGES'], 4);
+			foreach($page['IMAGES'] as $i => $images):
+			$result_array['image_content']		.= 		'<div class="row">';
+			foreach($images as $i => $image):
+			$result_array['image_content']		.= 		'<div class="col-lg-3">';
 			$result_array['image_content']		.= 			'<div class="thumbnail">';
-			$result_array['image_content']		.= 			'<a href="./plugin_imagenes/editar_imagen/'.$image->ID.'" class="thumbnail">';
-			$result_array['image_content']		.= 				'<img src="'.base_url($data_array['directory'].$image->IMAGE_FILE).'" alt="">';
-			$result_array['image_content']		.= 			'</a>';
-			$result_array['image_content']		.= 			'<h3>'.$image->IMAGE_NAME.'</h3>';
-			$result_array['image_content']		.= 			'<p><b>Archivo: </b>'.$image->IMAGE_FILE.'</p>';
-			$result_array['image_content']		.= 			'<p><b>Tama&ntilde;o: </b>'.$image->IMAGE_WIDTH.' x '.$image->IMAGE_HEIGHT.'</p>';
+			$result_array['image_content']		.= 				'<a href="./plugin_imagenes/editar_imagen/'.$image->ID.'" class="thumbnail">';
+			$result_array['image_content']		.= 					'<img src="'.base_url($data_array['directory'].$image->IMAGE_FILE).'" alt="">';
+			$result_array['image_content']		.= 				'</a>';
+			$result_array['image_content']		.= 				'<div class="caption">';
+			$result_array['image_content']		.= 					'<h3>'.$image->IMAGE_NAME.'</h3>';
+			$result_array['image_content']		.= 					'<p><b>ID: </b>'.$image->ID.'</p>';
+			$result_array['image_content']		.= 					'<p><b>Archivo: </b>'.$image->IMAGE_FILE.'</p>';
+			$result_array['image_content']		.= 					'<p><b>Tama&ntilde;o: </b>'.$image->IMAGE_WIDTH.' x '.$image->IMAGE_HEIGHT.'</p>';
+			$result_array['image_content']		.= 				'</div>';
 			$result_array['image_content']		.= 			'</div>';
-			$result_array['image_content']		.= 		'</li>';
+			$result_array['image_content']		.= 		'</div>';
 			endforeach;
-			$result_array['image_content']		.= 	'</ul>';
+			$result_array['image_content']		.= 	'</div>';
+			endforeach;
 		endforeach;
 		$result_array['image_content']		.= 	'</div>';
 		$result_array['image_content']		.= '</div>';
@@ -116,18 +122,18 @@ class Plugin_imagenes extends MY_Controller {
 			$pages_categories[$page->ID]	= $page->LABEL;
 		endforeach;
 		
-		$result_array['image_content']		=  '<div class="row-fluid">';
-		$result_array['image_content']		.= 	'<div class="span12">';
+		$result_array['image_content']		=  '<div class="row">';
+		$result_array['image_content']		.= 	'<div class="col-lg-12">';
 		
-		$result_array['image_content']		.=  form_open_multipart('cms/plugin_imagenes/edit_image_val/'.$ID, array('class' => 'form-horizontal'));
-		$result_array['image_content']		.= "<div class='control-group'>".form_label($this->plugin_display_array[3],'',array('class' => 'control-label'))."<div class='controls'>".form_dropdown('IMAGE_PAGE', $pages_categories, $image_info->IMAGE_PAGE, "class = 'span6'")."</div></div>";
-		$result_array['image_content']		.= "<div class='control-group'>".form_label($this->plugin_display_array[1],'',array('class' => 'control-label'))."<div class='controls'>".form_input(array('name' => 'IMAGE_NAME', 'value' => $image_info->IMAGE_NAME, 'class' => 'span6'))."</div></div>";
-		$result_array['image_content']		.= "<div class='control-group'>".form_label($this->plugin_display_array[2],'',array('class' => 'control-label'))."<div class='controls'>".form_upload(array('name' => 'IMAGE_FILE', 'class' => 'span6'))."</div></div>";
+		$result_array['image_content']		.=  form_open_multipart('cms/plugin_imagenes/edit_image_val/'.$ID, array('class' => 'form-horizontal col-lg-5'));
+		$result_array['image_content']		.= "<div class='form-group'>".form_label($this->plugin_display_array[3],'',array('class' => 'control-label col-lg-2'))."<div class='col-lg-10'>".form_dropdown('IMAGE_PAGE', $pages_categories, $image_info->IMAGE_PAGE, "class = 'form-control col-lg-4'")."</div></div>";
+		$result_array['image_content']		.= "<div class='form-group'>".form_label($this->plugin_display_array[1],'',array('class' => 'control-label col-lg-2'))."<div class='col-lg-10'>".form_input(array('name' => 'IMAGE_NAME', 'value' => $image_info->IMAGE_NAME, 'class' => 'form-control'))."</div></div>";
+		$result_array['image_content']		.= "<div class='form-group'>".form_label($this->plugin_display_array[2],'',array('class' => 'control-label col-lg-2'))."<div class='col-lg-10'>".form_upload(array('name' => 'IMAGE_FILE', 'class' => ''))."</div></div>";
 				
 		$result_array['image_content']		.= '<div class="form-actions">';
 		$result_array['image_content']		.= form_submit(array('value' => $this->plugin_button_update, 'class' => 'btn btn-primary', 'name' => 'POST_SUBMIT')).' ';
 //		$result_array['image_content']		.= form_submit(array('value' => $this->plugin_button_delete, 'class' => 'btn btn-danger', 'name' => 'POST_SUBMIT')).' ';
-		$result_array['image_content']		.= anchor('cms/plugin_imagenes', $this->plugin_button_cancel, array('class'=>'btn')).' ';
+		$result_array['image_content']		.= anchor('cms/plugin_imagenes', $this->plugin_button_cancel, array('class'=>'btn btn-default')).' ';
 		$result_array['image_content']		.= '</div>';
 		
 		$result_array['image_content']		.=	'</div>';

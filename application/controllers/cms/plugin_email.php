@@ -65,16 +65,16 @@ class Plugin_email extends PL_Controller {
 	public function _html_plugin_display(){
 		
 		//Formulario con datos generales de los correos
-		$data_array['email_resource'] 	= form_open_multipart('cms/'.strtolower($this->current_plugin).'/post_update_resource/', array('class' => 'form-horizontal'));
+		$data_array['email_resource'] 	= form_open_multipart('cms/'.strtolower($this->current_plugin).'/post_update_resource/', array('class' => 'form-horizontal col-lg-8'));
 		
-		$data_array['email_resource']	.= "<div class='control-group'>".form_label($this->plugin_display_array[1],'',array('class' => 'control-label'))."<div class='controls'>".form_upload(array('name' => 'EMAIL_HEADER'))."<img src='".base_url($this->fw_resource->request('RESOURCE_EMAIL_IMAGE_ROUTE'))."' style='width:260px; margin-left:20px;' alt='Email header' /></div></div>";
-		$data_array['email_resource']	.= "<div class='control-group'>".form_label($this->plugin_display_array[2],'',array('class' => 'control-label'))."<div class='controls'>".form_input(array('name' => 'RESOURCE_COMPANY_NAME', 'value' => $this->fw_resource->request('RESOURCE_COMPANY_NAME'), 'class' => 'span6'))."</div></div>";
-		$data_array['email_resource']	.= "<div class='control-group'>".form_label($this->plugin_display_array[3],'',array('class' => 'control-label'))."<div class='controls'>".form_input(array('name' => 'RESOURCE_COMPANY_PHONE', 'value' => $this->fw_resource->request('RESOURCE_COMPANY_PHONE'), 'class' => 'span6'))."</div></div>";
-		$data_array['email_resource']	.= "<div class='control-group'>".form_label($this->plugin_display_array[4],'',array('class' => 'control-label'))."<div class='controls'>".form_input(array('name' => 'RESOURCE_CONTACT_EMAIL', 'value' => $this->fw_resource->request('RESOURCE_CONTACT_EMAIL'), 'class' => 'span6'))."</div></div>";
+		$data_array['email_resource']	.= "<div class='form-group'>".form_label($this->plugin_display_array[1],'',array('class' => 'control-label col-lg-4'))."<div class='col-lg-8'>".'<div class="row"><div class="col-lg-5">'.form_upload(array('name' => 'EMAIL_HEADER')).'</div><div class="col-lg-7" ><span class="thumbnail"><img class="media-object" src="'.base_url($this->fw_resource->request('RESOURCE_EMAIL_IMAGE_ROUTE')).'" alt=""></span></div></div>'."</div></div>";
+		$data_array['email_resource']	.= "<div class='form-group'>".form_label($this->plugin_display_array[2],'',array('class' => 'control-label col-lg-4'))."<div class='col-lg-8'>".form_input(array('name' => 'RESOURCE_COMPANY_NAME', 'value' => $this->fw_resource->request('RESOURCE_COMPANY_NAME'), 'class' => 'form-control'))."</div></div>";
+		$data_array['email_resource']	.= "<div class='form-group'>".form_label($this->plugin_display_array[3],'',array('class' => 'control-label col-lg-4'))."<div class='col-lg-8'>".form_input(array('name' => 'RESOURCE_COMPANY_PHONE', 'value' => $this->fw_resource->request('RESOURCE_COMPANY_PHONE'), 'class' => 'form-control'))."</div></div>";
+		$data_array['email_resource']	.= "<div class='form-group'>".form_label($this->plugin_display_array[4],'',array('class' => 'control-label col-lg-4'))."<div class='col-lg-8'>".form_input(array('name' => 'RESOURCE_CONTACT_EMAIL', 'value' => $this->fw_resource->request('RESOURCE_CONTACT_EMAIL'), 'class' => 'form-control'))."</div></div>";
 		
 		$data_array['email_resource']	.= '<div class="form-actions">';
 		$data_array['email_resource']	.= form_submit(array('value' => $this->plugin_button_update, 'class' => 'btn btn-primary', 'name' => 'POST_SUBMIT')).' ';
-		$data_array['email_resource']	.= anchor('cms/'.strtolower($this->current_plugin), $this->plugin_button_cancel, array('class'=>'btn')).' ';
+		$data_array['email_resource']	.= anchor('cms/'.strtolower($this->current_plugin), $this->plugin_button_cancel, array('class'=>'btn btn-default')).' ';
 		$data_array['email_resource']	.= '</div>';
 		//Header data
 		$data_array['header'][1]			= $this->plugin_display_array[1];
@@ -103,8 +103,8 @@ class Plugin_email extends PL_Controller {
 		//Formulario
 		$data_array['form_html']			=  form_open('cms/'.strtolower($this->current_plugin).'/post_new_val', array('class' => 'form-horizontal'));
 		
-		$data_array['form_html']			.= "<div class='control-group'>".form_label($this->plugin_display_array[1],'',array('class' => 'control-label'))."<div class='controls'>".form_input(array('name' => 'CATEGORY_NAME', 'class' => 'span6'))."</div></div>";
-		$data_array['form_html']			.= "<div class='control-group'>".form_label($this->plugin_display_array[2],'',array('class' => 'control-label'))."<div class='controls'>".form_dropdown('CATEGORY_PARENT', $options_values_array)."</div></div>";
+		$data_array['form_html']			.= "<div class='form-group'>".form_label($this->plugin_display_array[1],'',array('class' => 'control-label col-lg-2'))."<div class='col-lg-10'>".form_input(array('name' => 'CATEGORY_NAME', 'class' => 'form-control'))."</div></div>";
+		$data_array['form_html']			.= "<div class='form-group'>".form_label($this->plugin_display_array[2],'',array('class' => 'control-label col-lg-2'))."<div class='col-lg-10'>".form_dropdown('CATEGORY_PARENT', $options_values_array)."</div></div>";
 		
 		$data_array['form_html']			.= '<div class="form-actions">'.form_submit(array('value' => $this->plugin_button_create, 'class' => 'btn btn-primary', 'name' => 'POST_SUBMIT')).' '.anchor('cms/'.strtolower($this->current_plugin), $this->plugin_button_cancel, array('class'=>'btn')).'</div>';
 		
@@ -123,8 +123,8 @@ class Plugin_email extends PL_Controller {
 		//Formulario
 		$data_array['form_html']			=  form_open('cms/'.strtolower($this->current_plugin).'/post_update_val/'.$result_data->ID, array('class' => 'form-horizontal'));
 		
-		$data_array['form_html']			.= "<div class='control-group'>".form_label($this->plugin_display_array[1],'',array('class' => 'control-label'))."<div class='controls'>".form_input(array('name' => 'CATEGORY_NAME', 'value' => $result_data->CATEGORY_NAME, 'class' => 'span6'))."</div></div>";
-		$data_array['form_html']			.= "<div class='control-group'>".form_label($this->plugin_display_array[2],'',array('class' => 'control-label'))."<div class='controls'>".form_dropdown('CATEGORY_PARENT', $options_values_array, $result_data->CATEGORY_PARENT)."</div></div>";
+		$data_array['form_html']			.= "<div class='form-group'>".form_label($this->plugin_display_array[1],'',array('class' => 'control-label col-lg-2'))."<div class='col-lg-10'>".form_input(array('name' => 'CATEGORY_NAME', 'value' => $result_data->CATEGORY_NAME, 'class' => 'form-control'))."</div></div>";
+		$data_array['form_html']			.= "<div class='form-group'>".form_label($this->plugin_display_array[2],'',array('class' => 'control-label col-lg-2'))."<div class='col-lg-10'>".form_dropdown('CATEGORY_PARENT', $options_values_array, $result_data->CATEGORY_PARENT)."</div></div>";
 		
 		$data_array['form_html']			.= '<div class="form-actions">';
 		$data_array['form_html']			.= form_submit(array('value' => $this->plugin_button_update, 'class' => 'btn btn-primary', 'name' => 'POST_SUBMIT')).' ';

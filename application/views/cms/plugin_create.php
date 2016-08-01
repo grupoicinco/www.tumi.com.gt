@@ -2,8 +2,8 @@
 	<div class="page-header">
 		<h1> <?php echo $page_title; ?> <small><?=$page_subtitle?></small></h1>
 	</div>
-	<div class="row-fluid">
-		<div class="span12">
+	<div class="row">
+		<div class="col-lg-12">
 			<?php echo $form_html?>
 		</div>
 	</div>
